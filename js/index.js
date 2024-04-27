@@ -70,13 +70,14 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         });  
         
         let compareCard = document.querySelectorAll(".card-title");
-        compareCard.forEach((item)=>{
-          if(!item.innerText.includes(tempTitle)){
-            // document.querySelector(".col").style.display = "none";
-            console.log("테[스트1")
+        let cardIndex = document.querySelectorAll(".col");
+
+        compareCard.forEach((item,i)=>{
+          let titleCompare = tempTitle.includes(item.innerText);
+          if(!titleCompare){
+            cardIndex[i].style.display = "none";
           }else{
-            // document.querySelector(".col").style.display = "block";
-            console.log("테스트2")
+            cardIndex[i].style.display = "block";
           }
         });
       };
