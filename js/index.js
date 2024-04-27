@@ -46,12 +46,26 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         let tempNum = tempName[1]; 
         alert(`영화 ID : ${tempNum}`)
       }
-      //this는 클릭 이벤트가 발생한 요소를 가리킴. 각각의 movieImg
+      //this는 클릭 이벤트가 발생한 요소를 가리킴. 각각의 movieImg.
       
       cardClick.forEach(item => {
         item.addEventListener("click", idOutput);
       });
       // //카드창 클릭 부분
+
+
+
+
+    let searchClick = document.querySelector(".searchBox_inner .btn");  
+
+      let btnClick = function(){
+        let tempValue = document.getElementById("floatingInput").value
+        //여기서 .value는 html의 인풋필드에서 입력한 값을 가져오는 속성.
+        console.log(tempValue);
+      }
+
+      searchClick.addEventListener("click",btnClick);
+      //검색버튼 클릭 부분
   })
 
   
