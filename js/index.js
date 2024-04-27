@@ -10,6 +10,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
   .then(response => response.json())
   .then(response =>{
     let movieResult = response["results"];
+    let allMovietitle;
 
       movieResult.forEach(element => {
         let movieTitle = element["original_title"];
@@ -17,6 +18,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         let movieRating = element["vote_average"];
         let movieImage ="https://image.tmdb.org/t/p/w500" + element["poster_path"];
         let movieId = element["id"];  
+        allMovietitle += movieTitle + "/";
 
         let tempCard = 
         `<div class="col">
@@ -36,7 +38,10 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
       });
       // //forEach 카드동적분배
 
-
+    allMovietitle = allMovietitle.split("/").slice(0,-1);
+    //allMovietitle을 문자열 =>배열. 뒷 구분자 삭제.
+  
+      
       
       
     let cardClick = document.querySelectorAll(".movieImg");
@@ -55,14 +60,16 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
 
 
-
     let searchClick = document.querySelector(".searchBox_inner .btn");  
 
       let btnClick = function(){
         let tempValue = document.getElementById("floatingInput").value
         //여기서 .value는 html의 인풋필드에서 입력한 값을 가져오는 속성.
-        console.log(tempValue);
-      }
+        let tempTitle = allMovietitle.filter((item)=>{
+          return item.includes(tempValue);
+        });  
+        console.log(tempTitle);
+      };
 
       searchClick.addEventListener("click",btnClick);
       //검색버튼 클릭 부분
