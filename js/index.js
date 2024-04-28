@@ -34,7 +34,6 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
           </div>
         </div>`;
         document.getElementById("cards").insertAdjacentHTML("beforeend",tempCard);
-        // console.log(response["results"]);
       });
       // //forEach 카드동적분배
 
@@ -60,6 +59,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
 
 
 
+
     let searchClick = document.querySelector(".searchBox_inner .btn");  
 
       let btnClick = function(){
@@ -68,33 +68,26 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         let tempTitle = allMovietitle.filter((item)=>{
           return item.toLowerCase().includes(tempValue);
         });  
-        
+        console.log(tempTitle);
         let compareCard = document.querySelectorAll(".card-title");
         let cardIndex = document.querySelectorAll(".col");
 
         compareCard.forEach((item,i)=>{
-          let titleCompare = tempTitle.includes(item.innerText);
-          if(!titleCompare){
+          
+          let titleCompare = tempTitle.filter((item1)=>{
+            return item.innerText.includes(item1);
+          })
+          
+          if(titleCompare.length === 0){
             cardIndex[i].style.display = "none";
           }else{
             cardIndex[i].style.display = "block";
           }
         });
       };
-      // let compareCard = document.querySelectorAll(".card-title");
-      //   console.log(compareCard);
-
-      //   compareCard.forEach((item) =>{
-      //   console.log(item)
-      //   })
-      
-    
       searchClick.addEventListener("click",btnClick);
       //검색버튼 클릭 부분
   })
-
-  
-  // .then(response => console.log(response["results"][0]["original_title"]))
   .catch(err => console.error(err));
   // //fetch
 
