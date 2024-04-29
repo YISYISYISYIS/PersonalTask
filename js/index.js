@@ -86,7 +86,7 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         });
       };
       searchClick.addEventListener("click",btnClick);
-      //검색버튼 클릭 부분
+      // //검색버튼 클릭 부분
   })
   .catch(err => console.error(err));
   // //fetch
