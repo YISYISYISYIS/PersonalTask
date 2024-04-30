@@ -42,20 +42,34 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
   
       
       
-      
-    let cardClick = document.querySelectorAll(".movieImg");
+    let cardClick = document.querySelector("#cards");
         
-      function idOutput(){
-        let tempName = this.className.split(" ");
-        let tempNum = tempName[1]; 
-        alert(`영화 ID : ${tempNum}`)
+      function idOutput(event){
+        if(event.target.classList.contains("movieImg")){
+          let tempName = event.target.className.split(" ");
+          alert(`영화 ID : ${tempName[1]}`)
+        }
       }
-      //this는 클릭 이벤트가 발생한 요소를 가리킴. 각각의 movieImg.
       
-      cardClick.forEach(item => {
-        item.addEventListener("click", idOutput);
-      });
-      // //카드창 클릭 부분
+      cardClick.addEventListener("click", idOutput);
+      
+      // //카드창 클릭 부분  
+
+
+
+    // let cardClick = document.querySelectorAll(".movieImg");
+        
+    //   function idOutput(){
+    //     let tempName = this.className.split(" ");
+    //     let tempNum = tempName[1]; 
+    //     alert(`영화 ID : ${tempNum}`)
+    //   }
+    //   //this는 클릭 이벤트가 발생한 요소를 가리킴. 각각의 movieImg.
+      
+    //   cardClick.forEach(item => {
+    //     item.addEventListener("click", idOutput);
+    //   });
+    //   // //카드창 클릭 부분
 
 
 
