@@ -41,6 +41,8 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
     //allMovietitle을 문자열 =>배열. 문자열끝부분 뒷 구분자 삭제.
   
       
+
+
       
     let cardClick = document.querySelector("#cards");
         
@@ -50,33 +52,18 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
           alert(`영화 ID : ${tempName[1]}`)
         }
       }
-      
       cardClick.addEventListener("click", idOutput);
-      
       // //카드창 클릭 부분  
 
 
 
-    // let cardClick = document.querySelectorAll(".movieImg");
-        
-    //   function idOutput(){
-    //     let tempName = this.className.split(" ");
-    //     let tempNum = tempName[1]; 
-    //     alert(`영화 ID : ${tempNum}`)
-    //   }
-    //   //this는 클릭 이벤트가 발생한 요소를 가리킴. 각각의 movieImg.
-      
-    //   cardClick.forEach(item => {
-    //     item.addEventListener("click", idOutput);
-    //   });
-    //   // //카드창 클릭 부분
 
 
+    let searchClick = document.querySelector(".searchBox_inner");  
 
-
-    let searchClick = document.querySelector(".searchBox_inner .btn");  
-
-      let btnClick = function(){
+      let btnClick = function(event){
+        event.preventDefault();
+        //submit 이벤트 새로고침 막기
         let tempValue = document.getElementById("floatingInput").value.toLowerCase();
         //여기서 .value는 html의 인풋필드에서 입력한 값을 가져오는 속성.
         let tempTitle = allMovietitle.filter((item)=>{
@@ -87,11 +74,10 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
         let cardIndex = document.querySelectorAll(".col");
 
         compareCard.forEach((item,i)=>{
-          
           let titleCompare = tempTitle.filter((item1)=>{
             return item.innerText.includes(item1);
           })
-          
+         
           if(titleCompare.length === 0){
             cardIndex[i].style.display = "none";
           }else{
@@ -99,9 +85,10 @@ fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', opti
           }
         });
       };
-      searchClick.addEventListener("click",btnClick);
+      searchClick.addEventListener("submit",btnClick);
       // //검색버튼 클릭 부분
   })
+  //fetch .then
   .catch(err => console.error(err));
   // //fetch
 
